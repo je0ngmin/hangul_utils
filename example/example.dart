@@ -32,4 +32,6 @@ void main() {
   print(
     "${hangulJosa("과자", HangulJosaSelectionEulReul())} 구매하시겠습니까?",
   ); // 과자를 구매하시겠습니까?
+
+  print(kang.romanize()); // gang
 }

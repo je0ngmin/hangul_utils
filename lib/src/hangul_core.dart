@@ -80,6 +80,22 @@ class HangulCharacter {
 
     return String.fromCharCode(codePoint);
   }
+
+  /// 한글 글자를 국어의 로마자 표기법에 따라 로마자 표기법으로 변환합니다.
+  ///
+  /// https://korean.go.kr/kornorms/regltn/regltnView.do?regltn_code=0004
+  String romanize() {
+    String result = "";
+
+    result += romanChoseongs[choseongs.indexOf(choseong)];
+    if (jungseong != null) {
+      result += romanJungseongs[jungseongs.indexOf(jungseong!)];
+      if (jongseong != null) {
+        result += romanJongseongs[jongseongs.indexOf(jongseong!)];
+      }
+    }
+    return result;
+  }
 }
 
 /// 매개변수로 받은 [String]이 모두 한글인지 확인하는 함수입니다.

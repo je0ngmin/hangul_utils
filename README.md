@@ -37,6 +37,8 @@ print(kang.jongseong); // ㅇ
 print(k.choseong); // ㄱ
 print(k.jungseong); // null
 print(k.jongseong); // null
+
+print(kang.romanize()); // 강
 ```
 
 ### hangulJosa
