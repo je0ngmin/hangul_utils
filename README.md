@@ -1,9 +1,10 @@
 # hangul_utils
+[![Pub Version](https://img.shields.io/pub/v/hangul_utils)](https://pub.dev/packages/hangul_utils)
+
 hangul_utils은 Dart에서 한글을 효과적으로 다룰 수 있는 패키지입니다.
 
 hangul_utils is an effective package for handling Hangul in Dart.
 
-[![pub.dev - hangul](https://img.shields.io/badge/pub.dev-hangul-2ea44f)](https://pub.dev/packages/hangul)
 
 
 # Install
