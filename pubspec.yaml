@@ -1,6 +1,7 @@
 name: hangul_utils
 description: hangul_utils is an effective package for handling Hangul in Dart.
 version: 1.0.0
+repository: https://github.com/je0ngmin/hangul_utils
 
 environment:
   sdk: ^3.9.0

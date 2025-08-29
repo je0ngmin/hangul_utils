@@ -1,6 +1,7 @@
 # hangul_utils
-hangul_utils is an effective package for handling Hangul in Dart.
 hangul_utils은 Dart에서 한글을 효과적으로 다룰 수 있는 패키지입니다.
+
+hangul_utils is an effective package for handling Hangul in Dart.
 
 [![pub.dev - hangul](https://img.shields.io/badge/pub.dev-hangul-2ea44f)](https://pub.dev/packages/hangul)
 
@@ -18,7 +19,8 @@ $ dart pub add hangul_utils
 ## Usage
 
 ### HangulCharacter
-HangulCharacter는 한글 한 글자를 표현하는 클래스입니다. HangulCharacter.fromCharacter로 생성합니다.
+HangulCharacter는 한글 한 글자를 표현하는 클래스입니다. 한글 음절을 초성, 중성, 종성 단위로 분해해 표현하며 다시 합성할 수 있습니다.
+HangulCharacter.fromCharacter로 생성합니다.
 
 ```dart
 var kang = HangulCharacter.fromCharacter("강");
