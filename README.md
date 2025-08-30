@@ -1,11 +1,9 @@
 # hangul_utils
 [![Pub Version](https://img.shields.io/pub/v/hangul_utils)](https://pub.dev/packages/hangul_utils)
 
-hangul_utils은 Dart에서 한글을 효과적으로 다룰 수 있는 패키지입니다.
+hangul_utils는 Dart에서 한글을 효과적으로 다룰 수 있도록 돕는 패키지입니다.
 
 hangul_utils is an effective package for handling Hangul in Dart.
-
-
 
 # Install
 
@@ -24,35 +22,53 @@ HangulCharacter는 한글 한 글자를 표현하는 클래스입니다. 한글 
 HangulCharacter.fromCharacter로 생성합니다.
 
 ```dart
-var kang = HangulCharacter.fromCharacter("강");
-var k = HangulCharacter.fromCharacter("ㄱ");
+var river = HangulCharacter.fromCharacter("강");
+var g = HangulCharacter.fromCharacter("ㄱ");
 
-print(kang); // 강
-print(k); // ㄱ
+print(river); // 강
+print(g); // ㄱ
 
-print(kang.choseong); // ㄱ
-print(kang.jungseong); // ㅏ
-print(kang.jongseong); // ㅇ
+print(river.choseong); // ㄱ
+print(river.jungseong); // ㅏ
+print(river.jongseong); // ㅇ
 
-print(k.choseong); // ㄱ
-print(k.jungseong); // null
-print(k.jongseong); // null
+print(g.choseong); // ㄱ
+print(g.jungseong); // null
+print(g.jongseong); // null
 
-print(kang.romanize()); // 강
+print(river.romanize()); // gang
 ```
 
 ### hangulJosa
-HangulJosaSelection에서 입력받은 텍스트의 마지막 글자의 받침 여부를 josaNoFinalConsonant와 josaWithFinalConsonant를 텍스트와 합쳐 반환합니다. HangulJosaSelectionIGa와 HangulJosaSelectionEulReul는 이/가, 을/를입니다.
+HangulJosaSelection에서 입력받은 텍스트의 마지막 글자의 받침 여부를 josaNoFinalConsonant와 josaWithFinalConsonant를 텍스트와 합쳐 반환합니다.
+
+HangulJosaSelectionIGa, HangulJosaSelectionEulReul, HangulJosaSelectionEunNeun, HangulJosaSelectionWaGwa, HangulJosaSelectionIrangRang 같은 프리셋들도 있습니다.
 
 ```dart
 print("${hangulJosa("강아지", HangulJosaSelectionIGa())} 노래를 한다."); // 강아지가 노래를 한다.
+print("${hangulJosa("친구", HangulJosaSelectionWaGwa())} 놀러 나갔다.");
 print("${hangulJosa("바깥", HangulJosaSelection("으로", "로"))} 돌을 던졌다."); // 바깥으로 돌을 던졌다.
 ```
 
-마지막 글자가 영어인 경우는 받침이 없는 것으로 판단해 HangulJosaSelection의 josaNoFinalConsonant와 합쳐 반환합니다.
+마지막 글자가 한글이 아닌 경우 HangulJosaSelection의 을(를) 형식으로 조사가 정해집니다. 
 
 ```dart
-print("${hangulJosa("Dart", HangulJosaSelectionEulReul())} 실행했습니다."); // Dart를 실행했습니다.
+print("${hangulJosa("Dart", HangulJosaSelectionEulReul())} 실행했습니다."); // Dart을(를) 실행했습니다.
+```
+
+### hangulRomainze
+한국어 텍스트를 입력받아 로마자로 표기한 문자열을 반환합니다.
+
+[국어의 로마자 표기법](https://korean.go.kr/kornorms/regltn/regltnView.do?regltn_code=0004)에 따라 로마자로 표기합니다.
+
+```dart
+print(hangulRomainze("백마")); //baengma
+print(hangulRomainze("신라")); // silla
+print(hangulRomainze("학여울")); // hangnyeoul
+print(hangulRomainze("놓다")); // nota
+print(hangulRomainze("집현전")); // jiphyeonjeon
+print(hangulRomainze("잡혀")); // japyeo
+print(hangulRomainze("Dart는 프로그래밍 언어입니다.")); // Dartneun peurogeuraeming eoneoimnida.
 ```
 
 ### hangulChoseong

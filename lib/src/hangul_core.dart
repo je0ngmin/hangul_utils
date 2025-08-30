@@ -44,7 +44,7 @@ class HangulCharacter {
     }
 
     int code = newChar.codeUnitAt(0);
-    if (isHangul(newChar[0])) {
+    if (isHangul(newChar[0]) && newChar[0] != ' ') {
       if (code >= 0x3131 && code <= 0x314E) {
         return HangulCharacter(choseong: newChar);
       }

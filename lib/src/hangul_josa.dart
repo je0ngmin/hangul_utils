@@ -9,10 +9,18 @@ import 'package:hangul_utils/hangul_utils.dart';
 /// print("${hangulJosa("학교", HangulJosaSelection("으로", "로"))} 간다."); // 학교로 간다.
 /// ```
 class HangulJosaSelection {
+  /// 마지막 글자가 받침이 있을 때 해당 조사를 선택합니다.
   final String josaWithFinalConsonant;
+
+  /// 마지막 글자가 받침이 없을 때 해당 조사를 선택합니다.
   final String josaNoFinalConsonant;
 
   HangulJosaSelection(this.josaWithFinalConsonant, this.josaNoFinalConsonant);
+
+  @override
+  String toString() {
+    return "$josaWithFinalConsonant($josaNoFinalConsonant)";
+  }
 }
 
 /// 한글 조사: 이/가
@@ -37,6 +45,39 @@ class HangulJosaSelectionEulReul extends HangulJosaSelection {
   HangulJosaSelectionEulReul() : super("을", "를");
 }
 
+/// 한글 조사: 은/는
+///
+/// 이 클래스는 HangulJosaSelection("은", "는")로도 나타낼 수 있습니다.
+///
+/// ```dart
+/// print("${hangulJosa("출입문", HangulJosaSelectionEunNeun())} 어디에 있나요?"); // 출입문은 어디에 있나요?
+/// ```
+class HangulJosaSelectionEunNeun extends HangulJosaSelection {
+  HangulJosaSelectionEunNeun() : super("은", "는");
+}
+
+/// 한글 조사: 와/과
+///
+/// 이 클래스는 HangulJosaSelection("과", "와")로도 나타낼 수 있습니다.
+///
+/// ```dart
+/// print("${hangulJosa("친구", HangulJosaSelectionWaGwa())} 놀러 나갔다."); // 친구와 놀러 나갔다.
+/// ```
+class HangulJosaSelectionWaGwa extends HangulJosaSelection {
+  HangulJosaSelectionWaGwa() : super("과", "와");
+}
+
+/// 한글 조사: 이랑/랑
+///
+/// 이 클래스는 HangulJosaSelection("이랑", "랑")로도 나타낼 수 있습니다.
+///
+/// ```dart
+/// print("${hangulJosa("강아지", HangulJosaSelectionIrangRang())} 같이 여행을 떠났다."); // 강아지랑 여행을 떠났다.
+/// ```
+class HangulJosaSelectionIrangRang extends HangulJosaSelection {
+  HangulJosaSelectionIrangRang() : super("이랑", "랑");
+}
+
 /// 받은 문장에서 마지막 글자의 받침 여부로 HangulJosaSelection에서 조사를 선택한 후
 /// 문장과 조사를 합쳐 반환합니다.
 ///
@@ -52,7 +93,7 @@ String hangulJosa(String str, HangulJosaSelection selection) {
   var lastChar = str.trimRight()[str.trimRight().length - 1];
   str = str.trim();
   if (!isHangul(str)) {
-    return str + selection.josaNoFinalConsonant;
+    return str + selection.toString();
   }
   return str +
       (HangulCharacter.fromCharacter(lastChar).jongseong != null
